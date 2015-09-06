@@ -1,11 +1,12 @@
-var http = require('http');
-var server = http.createServer();
-var port = 80;
+var express = require('express');
+var app = express();
 
-server.listen(port, '127.0.0.1');
+app.use(express.static('public'));
 
-console.log('Server is running on port:', port);
+app.get('/getTableData', function (req, res) {
+    res.send('Hello World!');
+});
 
-server.on('request', function(req, res) {
-    res.end('It works!');
+var server = app.listen(8080, function () {
+    console.log('Server started on', server.address().port);
 });
